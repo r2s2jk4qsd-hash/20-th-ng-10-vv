@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng Ngày 20/10</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: url('https://wallpaperbat.com/wallpapers/4k-neon-galaxy-background-5QyheSy_ZZk_Sd2D4bvc.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      position: relative;
+    }
+    #message {
+      font-size: 3rem;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes neonGlow {
+      0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); }
+      100% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8); }
+    }
+    .falling {
+      position: absolute;
+      top: -50px;
+      font-size: 2rem;
+      pointer-events: none;
+      user-select: none;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+    audio {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="message">
+  Chúc các bạn nữ<br>
+  20 Tháng 10 vui vẻ nha
+</div>
+
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/10/26/audio_3e7c5e1b5d.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const audio = document.getElementById('bgm');
+  const message = document.getElementById('message');
+
+  // Play music after user interaction
+  window.addEventListener('click', () => {
+    audio.play();
+    message.style.opacity = 1;
+    generateFallingSymbols();
+  });
+
+  // Generate falling hearts and roses
+  function generateFallingSymbols() {
+    const symbols = ['❤️', '🌹'];
+    const total = 100;
+    for (let i = 0; i < total; i++) {
+      const span = document.createElement('span');
+      span.className = 'falling';
+      span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.fontSize = (Math.random() * 30 + 20) + 'px';
+      span.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      span.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(span);
+    }
+  }
+</script>
+
+</body>
+</html>
